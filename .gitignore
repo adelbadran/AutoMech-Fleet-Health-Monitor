@@ -1,0 +1,49 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Node / dashboard
+dashboard/node_modules/
+dashboard/dist/
+dashboard/uploads/
+dashboard/sessions/
+dashboard/*.log
+
+# Environment & secrets
+.env
+.env.local
+
+# Large data
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# Model binaries
+artifacts/*.pkl
+artifacts/*.pth
+
+# Training exports
+artifacts/training_outputs/*.csv
+
+# 3D model source
+dashboard/public/models/CarModel/CarModel.obj
+dashboard/public/models/CarModel.glb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# OS
+Thumbs.db

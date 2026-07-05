@@ -1,0 +1,697 @@
+# MTL file - created by a modified js OBJExporter
+
+newmtl hub_rb.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd hub_rb.0.png
+
+newmtl hub_rf.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.6925175796713128
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd hub_rb.0.png
+
+newmtl hub_rf.1
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd hub_rf.1.png
+
+newmtl dvorright.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl movsteer_1.0.1
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pm 0.7191704819753267
+Pr 0.4206735007813023
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.1.png
+
+newmtl movsteer_1.0.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.0.png
+
+newmtl chassis.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ke 0 0 0
+
+newmtl JUST_BLACK.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl primary
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.28082951802467326
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.8193024440314856 0.8193024440314856 0.8193024440314856
+Ke 0 0 0
+
+newmtl primary.001
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd primary.001.png
+
+newmtl black_lights.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl back_chrome_light.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd back_chrome_light.0.png
+
+newmtl pantulans.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd pantulans.0.png
+map_Ke pantulans.0.png
+
+newmtl right_rear_light
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd right_rear_light.png
+map_Ke right_rear_light.png
+
+newmtl breaklight_l
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl foglight_r
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl foglight_l
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl right_front_light
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl left_front_light
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd right_rear_light.png
+map_Ke right_rear_light.png
+
+newmtl aluminium_light.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.1.png
+
+newmtl tembus_red.0
+Tr 0.18354674741136623
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.7661633017218952
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd tembus_red.0.png
+
+newmtl light_night
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd right_rear_light.png
+map_Ke right_rear_light.png
+
+newmtl indicator_lf
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd right_rear_light.png
+map_Ke right_rear_light.png
+
+newmtl indicator_rf
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd right_rear_light.png
+map_Ke right_rear_light.png
+
+newmtl hitam.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl Plastic.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl belt.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd belt.0.png
+
+newmtl satin_red.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd pantulans.0.png
+
+newmtl suspensi.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd back_chrome_light.0.png
+
+newmtl suspensi.1
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd back_chrome_light.0.png
+
+newmtl aluminium2.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.1.png
+
+newmtl Putih.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd Putih.0.png
+
+newmtl Carpet.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.0.png
+
+newmtl Carpet_Light.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.141176 0.141176 0.141176
+Ke 0 0 0
+
+newmtl texture_Buttons.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd texture_Buttons.0.png
+
+newmtl LCDs.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd LCDs.0.png
+map_Ke LCDs.0.png
+
+newmtl Seat_Leather_white.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd Putih.0.png
+
+newmtl mirror_inside.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pm 1
+Pr 0.20178726690136128
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ke 0 0 0
+
+newmtl glass.0
+Tr 0.3781122886379804
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.22002778639135645
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd glass.0.png
+
+newmtl glass.1
+Tr 0.33555107649465854
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.2625889985346782
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd glass.1.png
+
+newmtl platnomor.1
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.639216 0.639216 0.639216
+Ke 0 0 0
+
+newmtl platnomor.2
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ke 0 0 0
+
+newmtl indicator_rr
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl indicator_lr
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.709804 1 0
+Ke 0 0 0
+
+newmtl left_rear_light
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl revlight_L
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd right_rear_light.png
+
+newmtl door_lf.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.0745098 0.0745098 0.0745098
+Ke 0 0 0
+
+newmtl door_lf.5
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.0431373 0.0431373 0.0431373
+Ke 0 0 0
+
+newmtl primary.002
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd primary.002.png
+
+newmtl primary.004
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 0.235294 1 0
+Ke 0 0 0
+
+newmtl front_black.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl light_pantulan.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 1 1 1
+map_Kd light_pantulan.0.png
+map_Ke light_pantulan.0.png
+
+newmtl wheels.2
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd wheels.2.png
+
+newmtl wheels.0
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.8235020314518136
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd movsteer_1.0.1.png
+
+newmtl wheels.1
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd dvorright.0.png
+
+newmtl wheels.3
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd wheels.3.png
+
+newmtl wheels.4
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 1
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd wheels.4.png
+
+newmtl wheels.6
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000
+illum 1
+Pr 0.683772233983162
+Pds 1
+Pl 1
+Ka 1 1 1
+Kd 1 1 1
+Ke 0 0 0
+map_Kd wheels.6.png

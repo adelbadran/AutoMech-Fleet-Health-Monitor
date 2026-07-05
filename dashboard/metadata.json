@@ -1,0 +1,6 @@
+{
+  "name": "AutoMech Dashboard",
+  "description": "A premium, Apple-inspired automotive digital twin and AI anomaly detection system featuring real-time telemetry, 3D interactive model, and predictive analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

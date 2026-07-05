@@ -1,0 +1,428 @@
+{
+  "title": "Auto-Mech AI Model Performance",
+  "subtitle": "Isolation Forest, LSTM AutoEncoder, and Fuzzy Logic Fusion",
+  "generatedAt": "2026-07-05 21:01",
+  "sourceNotebooks": [
+    "Models/1_IsolationForest.ipynb",
+    "Models/2_LSTM_AutoEncoder.ipynb",
+    "Models/3_Fuzzy_Logic_Fusion.ipynb"
+  ],
+  "artifacts": {
+    "isolationForest": "Models/isolation_forest_model.pkl",
+    "robustScaler": "Models/robust_scaler.pkl",
+    "minMaxScaler": "Models/min_max_scaler.pkl",
+    "lstmWeights": "Models/LSTM_autoencoder_model.pth",
+    "fuzzyConfig": "Models/Fuzzy_model_config.json",
+    "inferenceScript": "Models/run_inference.py"
+  },
+  "trainingParams": {
+    "isolationForest": {
+      "nEstimators": 200,
+      "contamination": 0.02031,
+      "randomState": 42,
+      "windowSize": 10,
+      "scaler": "RobustScaler",
+      "trainShape": [
+        362874,
+        56
+      ],
+      "testShape": [
+        120959,
+        56
+      ]
+    },
+    "lstmAutoencoder": {
+      "sequenceLength": 10,
+      "nFeatures": 14,
+      "hiddenDim": 64,
+      "embeddingDim": 16,
+      "optimizer": "adam",
+      "loss": "L1 (MAE)",
+      "batchSize": 256,
+      "epochs": 15,
+      "scaler": "MinMaxScaler",
+      "trainTestSplit": "80/20 chronological"
+    },
+    "fuzzyFusion": {
+      "bestThreshold": 0.9347,
+      "lstmWeight": 3.5,
+      "membershipLowBreakpoint": 0.2,
+      "membershipHighBreakpoint": 0.75,
+      "ifPercentiles": {
+        "p1": 0.37932154884486696,
+        "p99": 0.4121167446607936
+      },
+      "lstmPercentiles": {
+        "p1": 0.0014614534354768693,
+        "p99": 0.0027505695680156345
+      }
+    }
+  },
+  "models": {
+    "isolationForest": {
+      "displayName": "Isolation Forest",
+      "sourceNotebook": "Models/1_IsolationForest.ipynb",
+      "metrics": {
+        "accuracy": 0.9,
+        "precisionAnomaly": 0.1575,
+        "recallAnomaly": 0.9125,
+        "f1Anomaly": 0.2686,
+        "precisionNormal": 1.0,
+        "recallNormal": 0.9,
+        "f1Normal": 0.95,
+        "macroF1": 0.6072,
+        "weightedF1": 0.93,
+        "supportNormal": 118502,
+        "supportAnomaly": 2457,
+        "confusionMatrix": {
+          "tn": 106652,
+          "fp": 11850,
+          "fn": 215,
+          "tp": 2242
+        },
+        "rocAuc": 0.9290796976197588,
+        "bestThreshold": -0.21372743567245084,
+        "validationAtBestThreshold": {
+          "precision": 0.1599,
+          "recall": 0.9288,
+          "f1": 0.2728
+        },
+        "majorityBaselineAccuracy": 0.97969,
+        "evaluationSplit": "20% stratified test set (120,959 rows)"
+      },
+      "rocCurve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.028760841644064963,
+          "tpr": 0.0678931943992185
+        },
+        {
+          "fpr": 0.03955565081931522,
+          "tpr": 0.15434711820253988
+        },
+        {
+          "fpr": 0.05523479047504924,
+          "tpr": 0.23770758710517748
+        },
+        {
+          "fpr": 0.06415282857417719,
+          "tpr": 0.3274991859329209
+        },
+        {
+          "fpr": 0.07072152734060526,
+          "tpr": 0.4222565939433409
+        },
+        {
+          "fpr": 0.07626576563652412,
+          "tpr": 0.5243406056659069
+        },
+        {
+          "fpr": 0.08158215852302167,
+          "tpr": 0.6268316509280365
+        },
+        {
+          "fpr": 0.08735255448458837,
+          "tpr": 0.7298925431455552
+        },
+        {
+          "fpr": 0.09360733290914706,
+          "tpr": 0.8279062194724846
+        },
+        {
+          "fpr": 0.1017152539969992,
+          "tpr": 0.9198957994138717
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ]
+    },
+    "lstmAutoencoder": {
+      "displayName": "LSTM AutoEncoder",
+      "sourceNotebook": "Models/2_LSTM_AutoEncoder.ipynb",
+      "metrics": {
+        "accuracy": 0.8467383216205043,
+        "precisionAnomaly": 0.39672997522708503,
+        "recallAnomaly": 0.9777759687398242,
+        "f1Anomaly": 0.5644399539462863,
+        "precisionNormal": 0.9969892473118279,
+        "recallNormal": 0.8319253492352714,
+        "f1Normal": 0.9070085933149729,
+        "macroF1": 0.7357242736306295,
+        "weightedF1": 0.8722164216241507,
+        "supportNormal": 108666,
+        "supportAnomaly": 12284,
+        "confusionMatrix": {
+          "tn": 90402,
+          "fp": 18264,
+          "fn": 273,
+          "tp": 12011
+        },
+        "rocAuc": 0.976256447653091,
+        "anomalyThreshold": 0.01156,
+        "trainThresholdRule": "mean(train_errors) + 3 * std(train_errors)"
+      },
+      "rocCurve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.006073656893600574,
+          "tpr": 0.0676489742754803
+        },
+        {
+          "fpr": 0.011199455211381664,
+          "tpr": 0.1287040052100293
+        },
+        {
+          "fpr": 0.01512892717133234,
+          "tpr": 0.22183327906219472
+        },
+        {
+          "fpr": 0.018644286161264793,
+          "tpr": 0.33938456528817973
+        },
+        {
+          "fpr": 0.021883569837851766,
+          "tpr": 0.4881960273526539
+        },
+        {
+          "fpr": 0.0249296007950969,
+          "tpr": 0.6770595897101921
+        },
+        {
+          "fpr": 0.02798483426278689,
+          "tpr": 0.8591663953109736
+        },
+        {
+          "fpr": 0.03225479910919699,
+          "tpr": 0.9676815369586453
+        },
+        {
+          "fpr": 0.17933852354922422,
+          "tpr": 0.9992673396287854
+        },
+        {
+          "fpr": 0.6084975981447739,
+          "tpr": 1.0
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ]
+    },
+    "fuzzyFusion": {
+      "displayName": "Fuzzy Logic Fusion",
+      "sourceNotebook": "Models/3_Fuzzy_Logic_Fusion.ipynb",
+      "metrics": {
+        "accuracy": 0.9554609342703596,
+        "precisionAnomaly": 0.7045737675743015,
+        "recallAnomaly": 0.9668674698795181,
+        "f1Anomaly": 0.8151401805016987,
+        "precisionNormal": 0.9960900348726619,
+        "recallNormal": 0.9541714979846502,
+        "f1Normal": 0.9746802720448958,
+        "macroF1": 0.8949102262732973,
+        "weightedF1": 0.9584769608872552,
+        "supportNormal": 108666,
+        "supportAnomaly": 12284,
+        "confusionMatrix": {
+          "tn": 103686,
+          "fp": 4980,
+          "fn": 407,
+          "tp": 11877
+        },
+        "rocAuc": 0.9720520593087805,
+        "bestThreshold": 0.9347,
+        "lstmWeight": 3.5
+      },
+      "rocCurve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.04261682587009736,
+          "tpr": 0.8878215564962553
+        },
+        {
+          "fpr": 0.043214989049012574,
+          "tpr": 0.9153370237707588
+        },
+        {
+          "fpr": 0.04394198737415567,
+          "tpr": 0.9375610550309346
+        },
+        {
+          "fpr": 0.04465058067840907,
+          "tpr": 0.9542494301530446
+        },
+        {
+          "fpr": 0.045626046785563104,
+          "tpr": 0.9643438619342234
+        },
+        {
+          "fpr": 0.046914398247842014,
+          "tpr": 0.9723217193096712
+        },
+        {
+          "fpr": 0.1685531813078608,
+          "tpr": 0.9779387821556497
+        },
+        {
+          "fpr": 0.17359615703163822,
+          "tpr": 0.9836372517095409
+        },
+        {
+          "fpr": 0.17533543150571476,
+          "tpr": 0.9895799413871703
+        },
+        {
+          "fpr": 0.1782710323376217,
+          "tpr": 0.9948713774014979
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ],
+      "notebookAutoTune": {
+        "bestThreshold": 0.9347,
+        "f1": 0.8151,
+        "precision": 0.7046,
+        "recall": 0.9669
+      }
+    }
+  },
+  "dashboard": {
+    "primaryModel": "fuzzyFusion",
+    "bestThreshold": 0.9347,
+    "performanceMetrics": [
+      {
+        "label": "Accuracy",
+        "value": "95.5%",
+        "sub": "Fuzzy fusion test set"
+      },
+      {
+        "label": "Precision",
+        "value": "70.5%",
+        "sub": "Anomaly class"
+      },
+      {
+        "label": "Recall",
+        "value": "96.7%",
+        "sub": "Sensitivity index"
+      },
+      {
+        "label": "F1 Score",
+        "value": "81.5%",
+        "sub": "Anomaly harmonic mean"
+      },
+      {
+        "label": "ROC AUC",
+        "value": "0.972",
+        "sub": "Fuzzy risk score"
+      }
+    ],
+    "confusionMatrix": {
+      "tn": 103686,
+      "fp": 4980,
+      "fn": 407,
+      "tp": 11877
+    },
+    "rocCurve": [
+      {
+        "fpr": 0.0,
+        "tpr": 0.0
+      },
+      {
+        "fpr": 0.04261682587009736,
+        "tpr": 0.8878215564962553
+      },
+      {
+        "fpr": 0.043214989049012574,
+        "tpr": 0.9153370237707588
+      },
+      {
+        "fpr": 0.04394198737415567,
+        "tpr": 0.9375610550309346
+      },
+      {
+        "fpr": 0.04465058067840907,
+        "tpr": 0.9542494301530446
+      },
+      {
+        "fpr": 0.045626046785563104,
+        "tpr": 0.9643438619342234
+      },
+      {
+        "fpr": 0.046914398247842014,
+        "tpr": 0.9723217193096712
+      },
+      {
+        "fpr": 0.1685531813078608,
+        "tpr": 0.9779387821556497
+      },
+      {
+        "fpr": 0.17359615703163822,
+        "tpr": 0.9836372517095409
+      },
+      {
+        "fpr": 0.17533543150571476,
+        "tpr": 0.9895799413871703
+      },
+      {
+        "fpr": 0.1782710323376217,
+        "tpr": 0.9948713774014979
+      },
+      {
+        "fpr": 1.0,
+        "tpr": 1.0
+      }
+    ],
+    "featureImportance": [
+      {
+        "name": "Vibration Z",
+        "column": "Vibration_Z",
+        "importance": 0.4459,
+        "pValue": 0.0
+      },
+      {
+        "name": "Coolant Temp",
+        "column": "Coolant_Temp",
+        "importance": 0.1567,
+        "pValue": 0.0
+      },
+      {
+        "name": "Engine RPM",
+        "column": "Engine_RPM",
+        "importance": 0.1488,
+        "pValue": 0.0
+      },
+      {
+        "name": "Fuel Rate",
+        "column": "Fuel_Rate",
+        "importance": 0.1466,
+        "pValue": 0.0
+      },
+      {
+        "name": "Battery Volts",
+        "column": "Battery_Voltage",
+        "importance": 0.0784,
+        "pValue": 0.0
+      },
+      {
+        "name": "Oil Pressure",
+        "column": "Oil_Pressure",
+        "importance": 0.0237,
+        "pValue": 0.0
+      }
+    ]
+  }
+}
