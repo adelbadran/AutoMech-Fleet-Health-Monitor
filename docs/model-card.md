@@ -24,13 +24,19 @@
 - **Features:** 14 continuous sensor channels
 - **Label:** `Fault_Label` (0 = normal, ≥1 = fault) — used for evaluation, not direct supervision in IF/LSTM
 
-## Performance (Fusion Model)
+## Performance Summary
 
-Metrics exported to `artifacts/model_summary.json` from hold-out evaluation:
+All models evaluated on a **20% stratified test set** (~120,959 rows). See [model-tuning-results.md](model-tuning-results.md) for full tuning history.
 
-- Accuracy, Precision, Recall, F1
-- ROC-AUC, PR-AUC
-- Confusion matrix on test split
+| Model | F1 (Anomaly) | Precision | Recall | ROC-AUC |
+|-------|-------------|-----------|--------|---------|
+| Isolation Forest | 26.9% | 15.8% | 91.3% | 0.929 |
+| LSTM AutoEncoder | 56.4% | 39.7% | 97.8% | 0.976 |
+| **Fuzzy Fusion** | **81.5%** | **70.5%** | **96.7%** | **0.972** |
+
+Production decision threshold: **0.9347** (auto-tuned via precision-recall curve).
+
+Metrics exported to `artifacts/model_summary.json` for dashboard visualization.
 
 ## Limitations
 

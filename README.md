@@ -3,7 +3,50 @@
 > AI-powered predictive maintenance for fleet vehicles — Isolation Forest, LSTM AutoEncoder, and Fuzzy Logic Fusion with a live React dashboard and 3D digital twin.  
 > **DEPI R4 · Microsoft ML Program · 2026**
 
+[![Pipeline](https://img.shields.io/badge/Pipeline-3--Stage%20Hybrid-blue)](/docs/architecture.md)
+[![Best F1](https://img.shields.io/badge/F1%20(Anomaly)-81.5%25-green)](/docs/model-tuning-results.md)
+[![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.972-orange)](/docs/model-tuning-results.md)
+
 ![Live Dashboard](docs/images/dashboard-live.png)
+
+---
+
+## About the Project
+
+Fleet operators lose time and money when vehicle faults go undetected until breakdown. **AutoMech** addresses this with an end-to-end AI system that ingests multivariate sensor telemetry, detects anomalies in real time, and presents actionable diagnostics through an interactive dashboard with a 3D digital twin.
+
+### The Problem
+
+The Vehicle Health Telemetry Dataset contains **604,802 rows** across **14 sensor channels**, but faults represent only **~2%** of observations. This extreme class imbalance creates an accuracy paradox: a model that always predicts "Normal" achieves **97.97% accuracy** while catching **zero faults**. Standard unsupervised detectors then flood operators with false alarms.
+
+### Our Approach
+
+We designed a **three-stage hybrid pipeline** where each model compensates for the others' weaknesses:
+
+| Stage | Model | Strength | Weakness |
+|-------|-------|----------|----------|
+| 1 | **Isolation Forest** | Fast tabular outlier detection, 91% recall | Low precision (15.8%) |
+| 2 | **LSTM AutoEncoder** | Temporal pattern learning, ROC-AUC 0.976 | Still high false positives |
+| 3 | **Fuzzy Logic Fusion** | Interpretable risk score, **F1 = 81.5%** | Requires calibrated thresholds |
+
+The fusion layer reduces false positives by **73%** compared to LSTM alone while maintaining **96.7% recall** — catching nearly every fault with far fewer false alarms.
+
+### Key Results
+
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
+|-------|----------|-----------|--------|-----|---------|
+| Isolation Forest | 90.0% | 15.8% | 91.3% | 26.9% | 0.929 |
+| LSTM AutoEncoder | 84.7% | 39.7% | 97.8% | 56.4% | 0.976 |
+| **Fuzzy Fusion** | **95.5%** | **70.5%** | **96.7%** | **81.5%** | **0.972** |
+
+### What We Built
+
+- **ML Pipeline** — 5 Jupyter notebooks from raw data to production artifacts
+- **Inference Engine** — Python script scoring IF → LSTM → Fuzzy in one pass
+- **Live Dashboard** — React app with SSE telemetry streaming, model metrics, and fleet EDA
+- **3D Digital Twin** — Three.js vehicle model that reacts to anomaly alerts
+
+> Arabic overview: [docs/project-overview-ar.md](docs/project-overview-ar.md)
 
 <p align="center">
   <img src="docs/images/dashboard-ai.png" alt="Predictive Diagnostics" width="48%" />
@@ -45,6 +88,20 @@ Training scripts and notebooks expect these local paths — download from Drive 
 
 ## ML Pipeline
 
+```
+Raw CSV → Preprocess → EDA
+                ↓
+    ┌───────────┴───────────┐
+    ↓                       ↓
+Isolation Forest      LSTM AutoEncoder
+(56 tabular features) (10×14 sequences)
+    └───────────┬───────────┘
+                ↓
+        Fuzzy Logic Fusion → Risk Score ≥ 0.9347
+                ↓
+         Dashboard + Inference API
+```
+
 | Stage | Notebook | Model | Role |
 |-------|----------|-------|------|
 | 0 | `01_data_preprocessing` | — | Clean & smooth raw telemetry |
@@ -54,6 +111,8 @@ Training scripts and notebooks expect these local paths — download from Drive 
 | 4 | `05_fuzzy_logic_fusion` | Fuzzy Logic | Fuse IF + LSTM → final risk score |
 
 **Production scripts:** `src/train/train_and_save_artifacts.py` · `src/inference/run_inference.py`
+
+Full architecture diagrams: [docs/architecture.md](docs/architecture.md) · Tuning details: [docs/model-tuning-results.md](docs/model-tuning-results.md)
 
 ## Quick Start
 
@@ -100,12 +159,14 @@ npm run dev
 
 | Role | Name |
 |------|------|
-| ML Engineering | Adel Tamer |
-| Dashboard / Full-stack | Jawad Tamer |
+| ML Engineering | Adel Tamer - Marwan Mahmoud - Salah Khafaga - Shenouda Safwat |
+| Dashboard / Full-stack | Jawad Tamer - Ekram Hatem |
 
 ## Documentation
 
-- [Architecture](docs/architecture.md)
+- [Architecture & Pipeline Design](docs/architecture.md)
+- [Model Fine-Tuning & Results](docs/model-tuning-results.md)
+- [Project Overview (Arabic)](docs/project-overview-ar.md)
 - [Model Card](docs/model-card.md)
 - [Data](data/README.md)
 - [Artifacts](artifacts/README.md)
