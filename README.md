@@ -3,10 +3,6 @@
 > AI-powered predictive maintenance for fleet vehicles — Isolation Forest, LSTM AutoEncoder, and Fuzzy Logic Fusion with a live React dashboard and 3D digital twin.  
 > **DEPI R4 · Microsoft ML Program · 2026**
 
-[![Pipeline](https://img.shields.io/badge/Pipeline-3--Stage%20Hybrid-blue)](/docs/architecture.md)
-[![Best F1](https://img.shields.io/badge/F1%20(Anomaly)-81.5%25-green)](/docs/model-tuning-results.md)
-[![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.972-orange)](/docs/model-tuning-results.md)
-
 ![Live Dashboard](docs/images/dashboard-live.png)
 
 ---
