@@ -153,10 +153,11 @@ npm run dev
 
 ## Team
 
-| Role | Name |
-|------|------|
-| ML Engineering | Adel Tamer - Marwan Mahmoud - Salah Khafaga - Shenouda Safwat |
-| Dashboard / Full-stack | Jawad Tamer - Ekram Hatem |
+| Role | Members |
+|------|---------|
+| ML Engineering — Model Development | Adel Tamer · Marwan Mahmoud |
+| ML Engineering — Preprocessing & Data Collection | Salah Khafaga · Shenouda Safwat |
+| Dashboard / Full-stack | Jawad Tamer · Ekram Hatem |
 
 ## Documentation
 

@@ -112,7 +112,8 @@
 
 | الدور | الأعضاء |
 |-------|---------|
-| ML Engineering | Adel Tamer · Marwan Mahmoud · Salah Khafaga · Shenouda Safwat |
+| ML Engineering — تطوير النماذج | Adel Tamer · Marwan Mahmoud |
+| ML Engineering — المعالجة المسبقة وجمع البيانات | Salah Khafaga · Shenouda Safwat |
 | Dashboard / Full-stack | Jawad Tamer · Ekram Hatem |
 
 ---
