@@ -13,6 +13,7 @@ import {
   Cell,
   ReferenceLine,
 } from 'recharts';
+import CyberPanel from './CyberPanel';
 import {
   Loader2,
   AlertCircle,
@@ -204,13 +205,13 @@ export default function AIMonitoring({
           {performanceMetrics.map((met, idx) => (
             <div
               key={`model-${idx}`}
-              className="p-4 rounded-2xl border border-accent/15 bg-accent/[0.03] flex flex-col justify-between h-24"
+              className="cyber-action-card cyber-panel-cyan flex-col !items-start !gap-2 h-auto min-h-[6rem]"
             >
-              <span className="text-[10px] uppercase tracking-widest text-[#9CA3AF] font-medium">
+              <span className="text-[10px] uppercase tracking-widest text-cyber-muted font-medium">
                 {met.label}
               </span>
-              <span className="text-xl font-medium text-accent tabular-nums">{met.value}</span>
-              <span className="text-[9px] text-[#9CA3AF]/70">{met.sub}</span>
+              <span className="text-xl font-medium text-cyber-cyan tabular-nums">{met.value}</span>
+              <span className="text-[9px] text-cyber-muted/70">{met.sub}</span>
             </div>
           ))}
         </div>
@@ -237,28 +238,25 @@ export default function AIMonitoring({
           return (
             <div
               key={idx}
-              className={`p-4 rounded-2xl border ${borderCol} ${bgCol} flex flex-col justify-between h-28`}
+              className={`cyber-action-card ${borderCol} ${bgCol} flex-col !items-start !gap-2 h-auto min-h-[7rem]`}
             >
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <span className="text-[10px] uppercase tracking-widest text-[#9CA3AF] block font-medium">
-                    {kpi.title}
-                  </span>
-                </div>
+              <div className="flex items-start justify-between gap-2 w-full">
+                <span className="text-[10px] uppercase tracking-widest text-cyber-muted font-medium">
+                  {kpi.title}
+                </span>
                 {KPI_ICONS[kpi.icon] && (
-                  <div className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 ${textCol}`}>
+                  <div className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center bg-white/[0.04] border border-white/[0.08] ${textCol}`}>
                     {(() => {
                       const KpiIcon = KPI_ICONS[kpi.icon];
-                      return <KpiIcon className="w-4 h-4" strokeWidth={1.75} />;
+                      return <KpiIcon className="w-4 h-4" strokeWidth={1.5} />;
                     })()}
                   </div>
                 )}
               </div>
-              <div className="flex items-baseline justify-between mt-2">
-                <span className={`text-xl tracking-tight font-medium tabular-nums ${textCol}`}>
-                  {kpi.value}
-                </span>
-              </div>
+              <span className={`text-xl tracking-tight font-medium tabular-nums ${textCol}`}>
+                {kpi.value}
+              </span>
+              <span className="text-[9px] text-cyber-muted">{kpi.subtext}</span>
             </div>
           );
         })}
@@ -266,56 +264,52 @@ export default function AIMonitoring({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         <div className="lg:col-span-8 space-y-5">
-          <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                  <LineChartIcon className="w-4 h-4 text-accent" strokeWidth={1.75} />
-                </div>
-                <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
-                  Live Diagnostics Timeline
-                </h3>
-              </div>
-
-              <div className="flex bg-white/5 p-1 rounded-xl border border-white/5">
+          <CyberPanel
+            title="Diagnostic Timeline Analysis"
+            subtitle="Model output"
+            icon={LineChartIcon}
+            accent="cyan"
+            headerExtra={
+              <div className="flex bg-white/[0.04] p-1 rounded-xl border border-white/[0.06]">
                 <button
                   onClick={() => setActiveMetricTab('fusion')}
                   className={`px-3 py-1 text-[10px] uppercase rounded-lg transition-all cursor-pointer ${
                     activeMetricTab === 'fusion'
-                      ? 'bg-accent text-black font-semibold'
-                      : 'text-white/60 hover:text-white'
+                      ? 'bg-cyber-cyan text-[#050a0f] font-semibold'
+                      : 'text-cyber-muted hover:text-white'
                   }`}
                 >
-                  Unified Analyzer
+                  Unified
                 </button>
                 <button
                   onClick={() => setActiveMetricTab('individual')}
                   className={`px-3 py-1 text-[10px] uppercase rounded-lg transition-all cursor-pointer ${
                     activeMetricTab === 'individual'
-                      ? 'bg-accent text-black font-semibold'
-                      : 'text-white/60 hover:text-white'
+                      ? 'bg-cyber-cyan text-[#050a0f] font-semibold'
+                      : 'text-cyber-muted hover:text-white'
                   }`}
                 >
-                  Individual Tracks
+                  Individual
                 </button>
               </div>
-            </div>
-
+            }
+            bodyClassName="pt-2"
+          >
             <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={predictions} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorFusion" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor={latestPred.isAnomaly ? '#FF453A' : '#5AC8FA'} stopOpacity={0.15}/>
-                      <stop offset="95%" stopColor={latestPred.isAnomaly ? '#FF453A' : '#5AC8FA'} stopOpacity={0}/>
+                      <stop offset="5%" stopColor={latestPred.isAnomaly ? '#ff3b5c' : '#00e5ff'} stopOpacity={0.15}/>
+                      <stop offset="95%" stopColor={latestPred.isAnomaly ? '#ff3b5c' : '#00e5ff'} stopOpacity={0}/>
                     </linearGradient>
                     <linearGradient id="colorForest" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#FFB020" stopOpacity={0.08}/>
-                      <stop offset="95%" stopColor="#FFB020" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#ff9f43" stopOpacity={0.08}/>
+                      <stop offset="95%" stopColor="#ff9f43" stopOpacity={0}/>
                     </linearGradient>
                     <linearGradient id="colorLstm" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#30D158" stopOpacity={0.08}/>
-                      <stop offset="95%" stopColor="#30D158" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#39ff8c" stopOpacity={0.08}/>
+                      <stop offset="95%" stopColor="#39ff8c" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
 
@@ -355,7 +349,7 @@ export default function AIMonitoring({
                     <Area
                       type="monotone"
                       dataKey="fusionScore"
-                      stroke={latestPred.isAnomaly ? '#FF453A' : '#5AC8FA'}
+                      stroke={latestPred.isAnomaly ? '#ff3b5c' : '#00e5ff'}
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#colorFusion)"
@@ -386,19 +380,17 @@ export default function AIMonitoring({
                 </AreaChart>
               </ResponsiveContainer>
             </div>
-          </div>
+          </CyberPanel>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <BarChart3 className="w-4 h-4 text-accent" strokeWidth={1.75} />
-                <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
+                <h3 className="cyber-panel-title text-white">
                   Key Influence Factors
                 </h3>
               </div>
-              <p className="text-[10px] text-[#9CA3AF]/70 mb-4">
-                Based on fleet statistical analysis
-              </p>
+              <p className="cyber-panel-subtitle mb-4">Fleet data</p>
               <div className="h-56 w-full">
                 {featureImportance.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
@@ -430,13 +422,11 @@ export default function AIMonitoring({
             <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <Target className="w-4 h-4 text-success" strokeWidth={1.75} />
-                <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
-                  Sensitivity Curve (ROC)
+                <h3 className="cyber-panel-title text-white">
+                  Receiver Operating Characteristic
                 </h3>
               </div>
-              <p className="text-[10px] text-[#9CA3AF]/70 mb-4">
-                {selectedModelName} · detection sensitivity
-              </p>
+              <p className="cyber-panel-subtitle mb-4">ROC curve</p>
               <div className="h-56 w-full">
                 {rocCurveData.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
@@ -502,17 +492,12 @@ export default function AIMonitoring({
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-white/5">
               <SlidersHorizontal className="w-4 h-4 text-accent" strokeWidth={1.75} />
-              <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
+              <h3 className="cyber-panel-title text-white">
                 Sensitivity Calibration
               </h3>
             </div>
 
-            <p className="text-[11px] text-[#9CA3AF] leading-relaxed">
-              Sets how strictly the fusion model marks a vehicle as anomalous during live runs.
-              Lower sensitivity catches more potential faults early; higher sensitivity reduces false
-              alarms when telemetry is noisy. Use it to match your fleet&apos;s tolerance for alerts
-              vs. missed issues.
-            </p>
+            <p className="cyber-panel-subtitle mb-3">Threshold</p>
 
             {isFusionModel ? (
               <div className="bg-white/[0.04] backdrop-blur-md border border-white/10 p-4 rounded-xl space-y-3">
@@ -548,12 +533,10 @@ export default function AIMonitoring({
           </div>
 
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md space-y-4">
-            <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
+            <h3 className="cyber-panel-title text-white">
               System Performance Metrics
             </h3>
-            <p className="text-[10px] text-[#9CA3AF]/70 -mt-2">
-              {selectedModelName}
-            </p>
+            <p className="cyber-panel-subtitle -mt-1 mb-1">Metrics</p>
 
             <div className="space-y-3.5">
               {performanceMetrics.length > 0 ? (
@@ -579,13 +562,11 @@ export default function AIMonitoring({
           <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md space-y-4">
             <div className="flex items-center gap-2">
               <Grid3x3 className="w-4 h-4 text-accent" strokeWidth={1.75} />
-              <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
-                Telemetry Diagnostic Matrix
+              <h3 className="cyber-panel-title text-white">
+                Diagnostic Confusion Matrix
               </h3>
             </div>
-            <p className="text-[10px] text-[#9CA3AF]/70 -mt-2">
-              {selectedModelName} · validation on test fleet data
-            </p>
+            <p className="cyber-panel-subtitle -mt-1 mb-1">Test set</p>
 
             {confusionMatrix ? (
               <div className="grid grid-cols-2 gap-1.5 text-center">

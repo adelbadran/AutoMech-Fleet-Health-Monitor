@@ -40,9 +40,9 @@ const DEFAULT_ROT_X = -0.06;
 const DEFAULT_ROT_Y = 0.48;
 const SHOWROOM_FOV = 36;
 
-const WEB_BG = 0x08080c;
-const WEB_SURFACE = 0x141414;
-const WEB_ACCENT = 0x5ac8fa;
+const WEB_BG = 0x050a0f;
+const WEB_SURFACE = 0x0a1220;
+const WEB_ACCENT = 0x00e5ff;
 
 const MODEL_GLB_URL = '/models/CarModel.glb';
 const MODEL_TARGET_SIZE = 4.9;

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Cog, CloudSun } from 'lucide-react';
+import { Cog, CloudSun, Car, ScrollText, TrendingUp } from 'lucide-react';
 import Header from './components/Header';
+import CyberPanel from './components/CyberPanel';
 import MeshGradientBackground from './components/MeshGradientBackground';
 import FleetStatusBar from './components/FleetStatusBar';
 import LiveTelemetry from './components/LiveTelemetry';
@@ -33,6 +34,14 @@ const EMPTY_ANOMALY: ModelAnomalyState = {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'live' | 'ai' | 'dataset'>('live');
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(() => {
+    try {
+      return localStorage.getItem('automech-nav') !== 'hidden';
+    } catch {
+      return true;
+    }
+  });
   const [dataMode, setDataMode] = useState<DataMode>('upload');
 
   const [sensors, setSensors] = useState<Record<string, SensorData>>(getInitialSensors);
@@ -236,6 +245,18 @@ export default function App() {
     }
   };
 
+  const handleNavToggle = () => {
+    setNavVisible((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem('automech-nav', next ? 'visible' : 'hidden');
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  };
+
   const handleResetSimulation = () => {
     closeStream();
     setSensors(getInitialSensors());
@@ -254,8 +275,9 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen text-white flex flex-col font-sans selection:bg-accent/30 selection:text-white">
+    <div className="relative min-h-screen text-white flex flex-col font-sans selection:bg-cyber-cyan/30 selection:text-white">
       <MeshGradientBackground />
+
       <Header
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -270,6 +292,10 @@ export default function App() {
         onUploadFile={handleUploadFile}
         modelConfidence={modelConfidence}
         mlBackendReady={mlBackendReady}
+        settingsOpen={settingsOpen}
+        onSettingsOpenChange={setSettingsOpen}
+        navVisible={navVisible}
+        onNavToggle={handleNavToggle}
       />
 
       <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 pb-6 flex flex-col gap-6">
@@ -282,38 +308,80 @@ export default function App() {
               />
               <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
                 <div className="xl:col-span-5 flex flex-col gap-6">
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md xl:h-[440px] flex flex-col">
+                  <CyberPanel
+                    title="Engine and Powertrain Telemetry"
+                    subtitle="Powertrain"
+                    icon={Cog}
+                    accent="cyan"
+                    className="xl:h-[440px]"
+                    bodyClassName="flex flex-col min-h-0"
+                  >
                     <LiveTelemetry
                       sensors={sensors}
-                      title="Engine & Dynamics"
-                      titleIcon={Cog}
                       sensorIds={['speed', 'rpm', 'vibration_z', 'coolant_temp', 'engine_load', 'throttle_pos', 'brake_pressure']}
                     />
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md xl:h-[440px] flex flex-col">
+                  </CyberPanel>
+                  <CyberPanel
+                    title="Electrical and Environmental Systems"
+                    subtitle="Auxiliary"
+                    icon={CloudSun}
+                    accent="green"
+                    className="xl:h-[440px]"
+                    bodyClassName="flex flex-col min-h-0"
+                  >
                     <LiveTelemetry
                       sensors={sensors}
-                      title="Systems & Environment"
-                      titleIcon={CloudSun}
                       sensorIds={['oil_pressure', 'fuel_rate', 'intake_temp', 'battery_voltage', 'ambient_temp', 'acc_x', 'acc_y']}
                     />
-                  </div>
+                  </CyberPanel>
                 </div>
 
                 <div className="xl:col-span-7 flex flex-col gap-6">
-                  <div className="xl:h-[440px] h-[360px] w-full flex flex-col">
+                  <CyberPanel
+                    title="Vehicle Spatial Asset Monitor"
+                    subtitle="Live subsystem localization"
+                    icon={Car}
+                    accent="purple"
+                    className="xl:h-[440px] h-[360px]"
+                    bodyClassName="flex flex-col min-h-0 p-3 pt-0"
+                  >
                     <VehicleModel
                       isAnomalyActive={modelAnomaly.isAnomaly}
                       activeAnomalySubsystem={modelAnomaly.subsystem}
                     />
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md xl:h-[440px] h-[360px] flex flex-col overflow-hidden">
-                    <SystemActivity logs={logs} onClearLogs={() => setLogs([])} />
-                  </div>
+                  </CyberPanel>
+                  <CyberPanel
+                    title="System Activity Register"
+                    subtitle="Events"
+                    icon={ScrollText}
+                    accent="orange"
+                    className="xl:h-[440px] h-[360px]"
+                    bodyClassName="flex flex-col min-h-0 overflow-hidden pt-0"
+                    headerExtra={
+                      logs.length > 0 ? (
+                        <button
+                          onClick={() => setLogs([])}
+                          className="text-[9px] text-cyber-muted hover:text-white transition-all bg-white/[0.04] hover:bg-white/[0.08] px-2 py-1 rounded-lg border border-white/[0.08] cursor-pointer flex items-center gap-1 shrink-0"
+                        >
+                          Clear
+                        </button>
+                      ) : undefined
+                    }
+                  >
+                    <SystemActivity logs={logs} embedded />
+                  </CyberPanel>
                 </div>
               </div>
 
-              <SensorTrends sensors={sensors} tickLabels={trendLabels} />
+              <CyberPanel
+                title="Multivariate Sensor Trends"
+                subtitle="Timeline"
+                icon={TrendingUp}
+                accent="cyan"
+                bodyClassName="pt-2"
+              >
+                <SensorTrends sensors={sensors} tickLabels={trendLabels} embedded />
+              </CyberPanel>
             </div>
           )}
 
@@ -331,10 +399,10 @@ export default function App() {
             />
           )}
 
-          {activeTab === 'dataset' && <EDAReport />}
+        {activeTab === 'dataset' && <EDAReport />}
       </main>
 
-      <footer className="relative z-10 py-6 border-t border-white/5 text-center text-[10px] text-[#9CA3AF]/40">
+      <footer className="relative z-10 py-6 border-t border-cyber-cyan/5 text-center text-[10px] text-cyber-muted/60">
         AutoMech Fleet Health Monitor © 2026. All rights reserved.
       </footer>
     </div>

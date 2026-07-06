@@ -9,7 +9,6 @@ import {
   Legend,
 } from 'recharts';
 import {
-  TrendingUp,
   Gauge,
   Zap,
   Thermometer,
@@ -23,18 +22,19 @@ import { SensorData } from '../types';
 interface SensorTrendsProps {
   sensors: Record<string, SensorData>;
   tickLabels?: string[];
+  embedded?: boolean;
 }
 
 const TREND_SERIES: { id: string; label: string; color: string; icon: LucideIcon }[] = [
-  { id: 'rpm', label: 'Engine RPM', color: '#5AC8FA', icon: Gauge },
-  { id: 'speed', label: 'Vehicle Speed', color: '#30D158', icon: Zap },
-  { id: 'coolant_temp', label: 'Coolant Temp', color: '#FFB020', icon: Thermometer },
-  { id: 'oil_pressure', label: 'Oil Pressure', color: '#BF5AF2', icon: Droplet },
-  { id: 'vibration_z', label: 'Vibration Z', color: '#FF453A', icon: Activity },
-  { id: 'battery_voltage', label: 'Battery V', color: '#64D2FF', icon: Battery },
+  { id: 'rpm', label: 'Engine RPM', color: '#00e5ff', icon: Gauge },
+  { id: 'speed', label: 'Vehicle Speed', color: '#39ff8c', icon: Zap },
+  { id: 'coolant_temp', label: 'Coolant Temp', color: '#ff9f43', icon: Thermometer },
+  { id: 'oil_pressure', label: 'Oil Pressure', color: '#b44dff', icon: Droplet },
+  { id: 'vibration_z', label: 'Vibration Z', color: '#ff3b5c', icon: Activity },
+  { id: 'battery_voltage', label: 'Battery V', color: '#64d2ff', icon: Battery },
 ];
 
-export default function SensorTrends({ sensors, tickLabels }: SensorTrendsProps) {
+export default function SensorTrends({ sensors, tickLabels, embedded = false }: SensorTrendsProps) {
   const [visible, setVisible] = useState<Set<string>>(
     () => new Set(TREND_SERIES.map((s) => s.id)),
   );
@@ -65,45 +65,37 @@ export default function SensorTrends({ sensors, tickLabels }: SensorTrendsProps)
     });
   };
 
-  return (
-    <div className="p-5 rounded-2xl bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] backdrop-blur-md space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-white/5">
-        <div className="flex items-center gap-2">
-          <TrendingUp className="w-4 h-4 text-accent" />
-          <h3 className="font-display font-medium text-sm text-white uppercase tracking-wider">
-            Live Sensor Trends
-          </h3>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {TREND_SERIES.map((s) => {
-            const SeriesIcon = s.icon;
-            return (
+  const content = (
+    <>
+      <div className={`flex flex-wrap gap-1.5 ${embedded ? 'mb-4' : 'mb-4 pb-2 border-b border-white/5'}`}>
+        {TREND_SERIES.map((s) => {
+          const SeriesIcon = s.icon;
+          return (
             <button
               key={s.id}
               onClick={() => toggle(s.id)}
               className={`px-2 py-1 rounded-lg text-[9px] uppercase tracking-wider border transition-all cursor-pointer flex items-center gap-1 ${
                 visible.has(s.id)
-                  ? 'border-accent/40 bg-accent/10 text-accent'
-                  : 'border-white/10 text-white/40 hover:text-white/70'
+                  ? 'border-cyber-cyan/40 bg-cyber-cyan/10 text-cyber-cyan'
+                  : 'border-white/10 text-cyber-muted hover:text-white/70'
               }`}
             >
-              <SeriesIcon className="w-3 h-3" strokeWidth={1.75} />
+              <SeriesIcon className="w-3 h-3" strokeWidth={1.5} />
               {s.label}
             </button>
-            );
-          })}
-        </div>
+          );
+        })}
       </div>
 
       <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-            <XAxis dataKey="t" stroke="rgba(255,255,255,0.15)" tick={{ fill: '#9CA3AF', fontSize: 9 }} />
-            <YAxis stroke="rgba(255,255,255,0.15)" tick={{ fill: '#9CA3AF', fontSize: 9 }} width={40} />
+            <XAxis dataKey="t" stroke="rgba(0,229,255,0.15)" tick={{ fill: '#6b8aad', fontSize: 9 }} />
+            <YAxis stroke="rgba(0,229,255,0.15)" tick={{ fill: '#6b8aad', fontSize: 9 }} width={40} />
             <Tooltip
               contentStyle={{
-                backgroundColor: 'rgba(20,20,20,0.9)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                backgroundColor: 'rgba(8, 14, 24, 0.95)',
+                border: '1px solid rgba(0, 229, 255, 0.15)',
                 borderRadius: '8px',
                 fontFamily: 'Michroma, system-ui, sans-serif',
                 fontSize: '10px',
@@ -125,6 +117,14 @@ export default function SensorTrends({ sensors, tickLabels }: SensorTrendsProps)
           </LineChart>
         </ResponsiveContainer>
       </div>
+    </>
+  );
+
+  if (embedded) return content;
+
+  return (
+    <div className="cyber-panel cyber-panel-cyan p-5 space-y-4">
+      {content}
     </div>
   );
 }
