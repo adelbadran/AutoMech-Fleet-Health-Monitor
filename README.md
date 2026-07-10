@@ -1,7 +1,6 @@
 # AutoMech Fleet Health Monitor
 
-> **AI-Powered Predictive Maintenance for Fleet Vehicles**  
-> A 3-stage hybrid ML pipeline — Isolation Forest, LSTM AutoEncoder, and Fuzzy Logic Fusion — with a live React dashboard and 3D digital twin.  
+> AI-powered predictive maintenance for fleet vehicles — Isolation Forest, LSTM AutoEncoder, and Fuzzy Logic Fusion with a live React dashboard and 3D digital twin.  
 > **DEPI R4 · Microsoft ML Program · 2026**
 
 ![Live Dashboard](docs/images/dashboard-live.png)
@@ -10,28 +9,15 @@
 
 ## About the Project
 
-**AutoMech Fleet Health Monitor** is an end-to-end AI system for fleet predictive maintenance. It ingests multivariate vehicle telemetry from **14 sensor channels**, runs real-time anomaly detection through a hybrid ML pipeline, and delivers operator-ready diagnostics through an interactive dashboard with a 3D digital twin.
+Fleet operators lose time and money when vehicle faults go undetected until breakdown. **AutoMech** addresses this with an end-to-end AI system that ingests multivariate sensor telemetry, detects anomalies in real time, and presents actionable diagnostics through an interactive dashboard with a 3D digital twin.
 
 ### The Problem
 
-Fleet operators lose time and money when vehicle faults go undetected until breakdown. Manual inspections and fixed maintenance schedules cannot reliably identify emerging faults. The core challenge is detecting faults early **without flooding operators with false alarms** — excessive false positives reduce operator trust and waste maintenance resources.
-
-### Dataset & Sensors
-
-The **Vehicle Health Telemetry Dataset** provides comprehensive vehicle telemetry; fault labels are used primarily for performance evaluation.
-
-| Attribute | Value |
-|-----------|-------|
-| Observations | 604,802 records (after cleaning) |
-| Sensors | 14 continuous telemetry channels |
-| Key signals | RPM, Speed, Coolant Temperature, Oil Pressure, Vibration, Engine Load, Fuel Rate, Battery Voltage, Brake Pressure, Acceleration |
-| Labels | `Fault_Label`, `Fault_Type` (evaluation only) |
-
-Faults account for **~5.5%** of observations (33,017 fault vs. 571,783 normal). This class imbalance creates an accuracy paradox: a model that always predicts "Normal" achieves high accuracy while catching **zero faults**, while standard unsupervised detectors still flood operators with false alarms.
+The Vehicle Health Telemetry Dataset contains **604,802 rows** across **14 sensor channels**, but faults represent only **~2%** of observations. This extreme class imbalance creates an accuracy paradox: a model that always predicts "Normal" achieves **97.97% accuracy** while catching **zero faults**. Standard unsupervised detectors then flood operators with false alarms.
 
 ### Our Approach
 
-We designed a **3-stage hybrid pipeline** where each stage compensates for the weaknesses of the previous one:
+We designed a **three-stage hybrid pipeline** where each model compensates for the others' weaknesses:
 
 | Stage | Model | Strength | Weakness |
 |-------|-------|----------|----------|
@@ -39,7 +25,7 @@ We designed a **3-stage hybrid pipeline** where each stage compensates for the w
 | 2 | **LSTM AutoEncoder** | Temporal pattern learning, ROC-AUC 0.976 | Still high false positives |
 | 3 | **Fuzzy Logic Fusion** | Interpretable risk score, **F1 = 81.5%** | Requires calibrated thresholds |
 
-The fusion layer reduces false positives by **73%** compared to LSTM alone while maintaining **96.7% recall** — delivering the most balanced and reliable detection of the three stages, without sacrificing anomaly detection capability.
+The fusion layer reduces false positives by **73%** compared to LSTM alone while maintaining **96.7% recall** — catching nearly every fault with far fewer false alarms.
 
 ### Key Results
 
@@ -51,12 +37,10 @@ The fusion layer reduces false positives by **73%** compared to LSTM alone while
 
 ### What We Built
 
-- **ML Pipeline** — preprocessing, EDA, and 3 model stages across 5 Jupyter notebooks
-- **Inference Engine** — offline-trained models deployed for real-time IF → LSTM → Fuzzy scoring
-- **Live Dashboard** — Operations Console, Diagnostics Engine, and Analytics Workbench
-- **3D Digital Twin** — Three.js vehicle model that reacts to anomaly alerts in real time
-
-**Future work:** extend from anomaly detection to fault diagnosis, with fleet-wide monitoring, edge deployment, and automated retraining.
+- **ML Pipeline** — 5 Jupyter notebooks from raw data to production artifacts
+- **Inference Engine** — Python script scoring IF → LSTM → Fuzzy in one pass
+- **Live Dashboard** — React app with SSE telemetry streaming, model metrics, and fleet EDA
+- **3D Digital Twin** — Three.js vehicle model that reacts to anomaly alerts
 
 > Arabic overview: [docs/project-overview-ar.md](docs/project-overview-ar.md)
 
@@ -67,11 +51,11 @@ The fusion layer reduces false positives by **73%** compared to LSTM alone while
 
 ## Features
 
-- **3-stage hybrid pipeline** — Isolation Forest + LSTM AutoEncoder + Fuzzy Logic Fusion
+- **3-stage ML pipeline** — unsupervised + deep learning + fuzzy fusion
 - **14 sensor channels** — engine, electrical, braking, motion, environment
-- **Live dashboard** — Operations Console, Diagnostics Engine, Analytics Workbench, and 3D vehicle visualization
-- **Predictive diagnostics** — threshold calibration, model performance metrics, real-time inference monitoring
-- **Fleet analytics** — full EDA report with interactive charts and data quality assessment
+- **Live dashboard** — telemetry streaming, anomaly alerts, 3D vehicle visualization
+- **Predictive diagnostics** — threshold calibration, model performance metrics
+- **Fleet analytics** — full EDA report with interactive charts
 
 ## Project Structure
 
